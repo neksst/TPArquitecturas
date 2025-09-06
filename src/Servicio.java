@@ -12,12 +12,11 @@ public class Servicio {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		DAOfactory mysqlDAO = DAOfactory.getDAOfactory(1);
-		mysqlDAO.connect();
 		//mysqlDAO.loadDB();
 		ClienteDAO ClienteDAO = mysqlDAO.getCLienteDAO();
 		System.out.println(ClienteDAO.getCliente(1));
-		loadClients(ClienteDAO);
-		System.out.println(ClienteDAO.getCliente(1));
+		//loadClients(ClienteDAO);
+		System.out.println(ClienteDAO.getCliente(1000));
 	}
 	
 	public static void loadClients(ClienteDAO c) {

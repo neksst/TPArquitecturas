@@ -15,7 +15,6 @@ public abstract class DAOfactory {
 	public abstract ProductoDAO getProductoDAO();
 	
 	public abstract void loadDB();
-	public abstract void connect();
 
 	public static DAOfactory getDAOfactory(int DB) {
 		if (INSTANCE == null) {

@@ -15,7 +15,13 @@ public class MYSQLClienteDAO implements ClienteDAO {
 	
 	public MYSQLClienteDAO(Connection con) {
 		this.con = con;
-	}
+		try {
+			con.setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		}
 
 	@Override
 	public List<String> getClientes() {

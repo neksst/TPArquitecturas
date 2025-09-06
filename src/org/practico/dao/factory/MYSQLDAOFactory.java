@@ -13,7 +13,6 @@ public class MYSQLDAOFactory extends DAOfactory {
 
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URI = "jdbc:mysql://localhost:3306/testPractico";
-	private  Connection con = null; 
 
 	static {
 		try {
@@ -25,28 +24,22 @@ public class MYSQLDAOFactory extends DAOfactory {
 			System.exit(1);
 		}
 	}
-	
-	public void connect() {
+
+	public Connection getConnection() {
+		Connection con = null;
 		try {
-			
 			con = DriverManager.getConnection(URI, "root", "");
-			con.setAutoCommit(false);
+			return con;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-
-	public Connection getConnection() {
-		if(con == null) {
-			connect();
 		}
 		return con;
 	}
 
 	@Override
 	public ClienteDAO getCLienteDAO() {
-		return new MYSQLClienteDAO(con);
+		return new MYSQLClienteDAO(getConnection());
 	}
 
 	@Override
@@ -54,62 +47,51 @@ public class MYSQLDAOFactory extends DAOfactory {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	public  void  loadDB() {
-		String Cliente = "CREATE TABLE cliente (" +
-				  "idCliente int(11) NOT NULL," +
-				  "Nombre varchar(30) NOT NULL," +
-				  "email varchar(150) NOT NULL," +
-				  "PRIMARY KEY(idCliente));";
-		
-		String Factura = "CREATE TABLE Factura (" +
-						 "idFactura int(11)," +
-						 "idCliente int(11)," +
-						 "PRIMARY KEY(idFactura));";
-		
-		String Producto = "CREATE TABLE Producto (" +
-						  "idProducto int(11),"     +
-						  "Nombre VARCHAR(30)," 	+
-						  "Valor int(11),"      	+
-						  "PRIMARY KEY(idProducto));";
-		
-		String Producto_Factura = "CREATE TABLE Producto_Factura (" +
-								  "idProducto int(11)," 			+
-								  "idFactura  int(11),"				+
-								  "Cantidad int(11))";
-		String FK_cliente_factura = "ALTER TABLE Factura " +
-			    "ADD CONSTRAINT factura_ibfk_1 " +
-			    "FOREIGN KEY (idCliente) REFERENCES cliente (idCliente);";
-		
-		String FK_Producto_Factura = "ALTER TABLE Producto_Factura " +
-			    "ADD CONSTRAINT factura_producto_ibfk_1 FOREIGN KEY (idFactura) REFERENCES Factura (idFactura), " +
-			    "ADD CONSTRAINT factura_producto_ibfk_2 FOREIGN KEY (idProducto) REFERENCES Producto (idProducto);";
+
+	@Override
+	public void loadDB() {
+		Connection c = getConnection();
+		String Cliente = "CREATE TABLE cliente (" + "idCliente int(11) NOT NULL," + "Nombre varchar(30) NOT NULL,"
+				+ "email varchar(150) NOT NULL," + "PRIMARY KEY(idCliente));";
+
+		String Factura = "CREATE TABLE Factura (" + "idFactura int(11)," + "idCliente int(11),"
+				+ "PRIMARY KEY(idFactura));";
+
+		String Producto = "CREATE TABLE Producto (" + "idProducto int(11)," + "Nombre VARCHAR(30)," + "Valor int(11),"
+				+ "PRIMARY KEY(idProducto));";
+
+		String Producto_Factura = "CREATE TABLE Producto_Factura (" + "idProducto int(11)," + "idFactura  int(11),"
+				+ "Cantidad int(11))";
+		String FK_cliente_factura = "ALTER TABLE Factura " + "ADD CONSTRAINT factura_ibfk_1 "
+				+ "FOREIGN KEY (idCliente) REFERENCES cliente (idCliente);";
+
+		String FK_Producto_Factura = "ALTER TABLE Producto_Factura "
+				+ "ADD CONSTRAINT factura_producto_ibfk_1 FOREIGN KEY (idFactura) REFERENCES Factura (idFactura), "
+				+ "ADD CONSTRAINT factura_producto_ibfk_2 FOREIGN KEY (idProducto) REFERENCES Producto (idProducto);";
 		try {
-			con.prepareStatement(Cliente).execute();
-			con.commit();
-			
-			con.prepareCall(Factura).execute();
-			con.commit();
-			
-			con.prepareCall(Producto).execute();
-			con.commit();
-			
-			con.prepareCall(Producto_Factura).execute();
-			con.commit();
-			
-			con.prepareCall(FK_cliente_factura).execute();
-			con.commit();
-			
-			con.prepareCall(FK_Producto_Factura).execute();
-			con.commit();
-			
-			
+			c.prepareStatement(Cliente).execute();
+			c.commit();
+
+			c.prepareCall(Factura).execute();
+			c.commit();
+
+			c.prepareCall(Producto).execute();
+			c.commit();
+
+			c.prepareCall(Producto_Factura).execute();
+			c.commit();
+
+			c.prepareCall(FK_cliente_factura).execute();
+			c.commit();
+
+			c.prepareCall(FK_Producto_Factura).execute();
+			c.commit();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+
 	}
 
 }
