@@ -6,7 +6,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.practico.dao.daos.MYSQLClienteDAO;
+import org.practico.dao.daos.MYSQLFacturaDAO;
+import org.practico.dao.daos.MYSQLFacturaProductoDAO;
+import org.practico.dao.daos.MYSQLProductoDAO;
 import org.practico.dao.interfaces.ClienteDAO;
+import org.practico.dao.interfaces.FacturaDAO;
+import org.practico.dao.interfaces.FacturaProductoDAO;
 import org.practico.dao.interfaces.ProductoDAO;
 
 public class MYSQLDAOFactory extends DAOfactory {
@@ -29,6 +34,7 @@ public class MYSQLDAOFactory extends DAOfactory {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(URI, "root", "");
+			con.setAutoCommit(false);
 			return con;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -39,33 +45,43 @@ public class MYSQLDAOFactory extends DAOfactory {
 
 	@Override
 	public ClienteDAO getCLienteDAO() {
-		return new MYSQLClienteDAO(getConnection());
+		return new MYSQLClienteDAO(this.getConnection());
 	}
 
 	@Override
 	public ProductoDAO getProductoDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MYSQLProductoDAO(this.getConnection());
 	}
+	
+	@Override
+	public FacturaDAO getFacturaDAO() {
+		return new MYSQLFacturaDAO(this.getConnection());
+	}
+
+	@Override
+	public FacturaProductoDAO getFacturaProductoDAO() {
+		return new MYSQLFacturaProductoDAO(this.getConnection());
+	}
+
 
 	@Override
 	public void loadDB() {
 		Connection c = getConnection();
-		String Cliente = "CREATE TABLE cliente (" + "idCliente int(11) NOT NULL," + "Nombre varchar(30) NOT NULL,"
+		String Cliente = "CREATE TABLE IF NOT EXISTS cliente (" + "idCliente int(11) NOT NULL," + "Nombre varchar(30) NOT NULL,"
 				+ "email varchar(150) NOT NULL," + "PRIMARY KEY(idCliente));";
 
-		String Factura = "CREATE TABLE Factura (" + "idFactura int(11)," + "idCliente int(11),"
+		String Factura = "CREATE TABLE IF NOT EXISTS Factura (" + "idFactura int(11)," + "idCliente int(11),"
 				+ "PRIMARY KEY(idFactura));";
 
-		String Producto = "CREATE TABLE Producto (" + "idProducto int(11)," + "Nombre VARCHAR(30)," + "Valor int(11),"
+		String Producto = "CREATE TABLE IF NOT EXISTS Producto (" + "idProducto int(11)," + "Nombre VARCHAR(30)," + "Valor int(11),"
 				+ "PRIMARY KEY(idProducto));";
 
-		String Producto_Factura = "CREATE TABLE Producto_Factura (" + "idProducto int(11)," + "idFactura  int(11),"
+		String Producto_Factura = "CREATE TABLE IF NOT EXISTS Factura_Producto (" + "idProducto int(11)," + "idFactura  int(11),"
 				+ "Cantidad int(11))";
 		String FK_cliente_factura = "ALTER TABLE Factura " + "ADD CONSTRAINT factura_ibfk_1 "
 				+ "FOREIGN KEY (idCliente) REFERENCES cliente (idCliente);";
 
-		String FK_Producto_Factura = "ALTER TABLE Producto_Factura "
+		String FK_Factura_Producto = "ALTER TABLE Factura_Producto "
 				+ "ADD CONSTRAINT factura_producto_ibfk_1 FOREIGN KEY (idFactura) REFERENCES Factura (idFactura), "
 				+ "ADD CONSTRAINT factura_producto_ibfk_2 FOREIGN KEY (idProducto) REFERENCES Producto (idProducto);";
 		try {
@@ -84,9 +100,8 @@ public class MYSQLDAOFactory extends DAOfactory {
 			c.prepareCall(FK_cliente_factura).execute();
 			c.commit();
 
-			c.prepareCall(FK_Producto_Factura).execute();
+			c.prepareCall(FK_Factura_Producto).execute();
 			c.commit();
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,4 +109,5 @@ public class MYSQLDAOFactory extends DAOfactory {
 
 	}
 
+	
 }

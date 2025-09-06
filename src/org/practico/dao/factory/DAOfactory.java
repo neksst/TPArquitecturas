@@ -1,6 +1,8 @@
 package org.practico.dao.factory;
 
 import org.practico.dao.interfaces.ClienteDAO;
+import org.practico.dao.interfaces.FacturaDAO;
+import org.practico.dao.interfaces.FacturaProductoDAO;
 import org.practico.dao.interfaces.ProductoDAO;
 
 public abstract class DAOfactory {
@@ -10,9 +12,10 @@ public abstract class DAOfactory {
 
 	private static DAOfactory INSTANCE = null;
 
-	public abstract ClienteDAO getCLienteDAO();
-
+	public abstract ClienteDAO  getCLienteDAO();
 	public abstract ProductoDAO getProductoDAO();
+	public abstract FacturaDAO  getFacturaDAO();
+	public abstract FacturaProductoDAO getFacturaProductoDAO();
 	
 	public abstract void loadDB();
 
