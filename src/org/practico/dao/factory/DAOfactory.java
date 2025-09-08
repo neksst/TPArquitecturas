@@ -29,7 +29,7 @@ public abstract class DAOfactory {
 			case DERBY:
 				INSTANCE = new DERBYDAOFactory(); break;
 			default:
-				throw new IllegalArgumentException("Tipo de factory no soportado");
+				throw new IllegalArgumentException("Driver no encontrado!");
 			}
 		}
 
