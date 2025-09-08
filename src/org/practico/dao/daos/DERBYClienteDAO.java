@@ -10,18 +10,17 @@ import java.util.List;
 import org.practico.dao.interfaces.ClienteDAO;
 import org.practico.entities.Cliente;
 
-public class MYSQLClienteDAO implements ClienteDAO {
-
+public class DERBYClienteDAO implements ClienteDAO {
 	private Connection con;
 
-	public MYSQLClienteDAO(Connection con) {
+	public DERBYClienteDAO(Connection con) {
 		this.con = con;
 	}
 
 	@Override
 	public List<String> getClientes() {
 		List<String> l = new LinkedList<String>();
-		String select = "SELECT * FROM cliente";
+		String select = "SELECT * FROM CLIENTE";
 		PreparedStatement ps;
 		try{
 			ps = con.prepareStatement(select);
@@ -39,7 +38,7 @@ public class MYSQLClienteDAO implements ClienteDAO {
 	@Override
 	public Cliente getCliente(int id) {
 		Cliente c = new Cliente();
-		String select = "SELECT * FROM Cliente WHERE idCliente = ?";
+		String select = "SELECT * FROM CLIENTE WHERE idCliente = ?";
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(select);
@@ -62,7 +61,7 @@ public class MYSQLClienteDAO implements ClienteDAO {
 
 	@Override
 	public void insertCliente(int id, String Nombre, String Email) {
-		String Cliente = "INSERT INTO Cliente (idCliente,Nombre,Email) VALUES (?,?,?)";
+		String Cliente = "INSERT INTO CLIENTE (idCliente,Nombre,Email) VALUES (?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(Cliente);
 			ps.setInt(1, id);
@@ -81,13 +80,13 @@ public class MYSQLClienteDAO implements ClienteDAO {
 	@Override
 	public List<String> getClientesMasFacturados(){
 		List<String> l = new LinkedList<String>();
-		String join = "SELECT c.Nombre AS Cliente, p.Nombre AS Producto, fp.Cantidad, p.valor, fp.Cantidad * p.valor AS TOTAL FROM Cliente c JOIN Factura f ON c.idCliente = f.idCliente JOIN factura_producto fp ON f.idFactura = fp.idFactura JOIN producto p ON p.idProducto = fp.idProducto GROUP BY c.Nombre ORDER BY TOTAL DESC;";
+		String join = "SELECT c.Nombre AS Cliente, SUM(fp.Cantidad * p.Valor) AS TOTAL_FACTURADO FROM CLIENTE c JOIN FACTURA f ON c.idCliente = f.idCliente JOIN FACTURA_PRODUCTO fp ON f.idFactura = fp.idFactura JOIN PRODUCTO p ON p.idProducto = fp.idProducto GROUP BY c.Nombre ORDER BY TOTAL_FACTURADO DESC";
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(join);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				l.add("Cliente: " + rs.getString(1) + " Producto: " + rs.getString(2) + " Cantidad: " + rs.getInt(3) + " Valo: " + rs.getInt(4) + " Total: " + rs.getInt(5));
+				l.add("Cliente: " + rs.getString(1) + " Total: " + rs.getInt(2));
 			}
 			ps.close();
 			return l;

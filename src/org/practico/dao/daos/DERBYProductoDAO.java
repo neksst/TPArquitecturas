@@ -10,18 +10,18 @@ import java.util.List;
 import org.practico.dao.interfaces.ProductoDAO;
 import org.practico.entities.Producto;
 
-public class MYSQLProductoDAO implements ProductoDAO{
+public class DERBYProductoDAO implements ProductoDAO {
 
-	private Connection con;
+private Connection con;
 	
-	public MYSQLProductoDAO(Connection con) {
+	public DERBYProductoDAO(Connection con) {
 		this.con = con;
 	}
 	
 	
 	@Override
 	public void insertProducto(int idProducto,String nombre,int valor) {
-		String insert = "INSERT INTO Producto (idProducto,nombre,valor) VALUES (?,?,?)";
+		String insert = "INSERT INTO PRODUCTO (idProducto,nombre,valor) VALUES (?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(insert);
 			ps.setInt(1, idProducto);
@@ -80,7 +80,7 @@ public class MYSQLProductoDAO implements ProductoDAO{
 	@Override
 	public String getProductoMasVendido() {
 		String res = "No encontrado!";
-		String join = "SELECT DISTINCT p.Nombre, fp.Cantidad, valor , fp.Cantidad*p.valor TOTAL FROM producto p JOIN factura_producto fp ON p.idProducto = fp.idProducto ORDER BY TOTAL DESC LIMIT 1;";
+		String join = "SELECT p.Nombre, fp.Cantidad, valor , fp.Cantidad*p.valor TOTAL FROM PRODUCTO p JOIN FACTURA_PRODUCTO fp ON p.idProducto = fp.idProducto ORDER BY TOTAL DESC FETCH FIRST 1 ROWS ONLY";
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(join);
@@ -95,7 +95,5 @@ public class MYSQLProductoDAO implements ProductoDAO{
 		return res;
 				
 	}
-	
-	
 
 }

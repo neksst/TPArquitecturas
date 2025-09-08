@@ -30,6 +30,7 @@ public class MYSQLDAOFactory extends DAOfactory {
 		}
 	}
 
+	@Override
 	public Connection getConnection() {
 		Connection con = null;
 		try {
@@ -88,19 +89,19 @@ public class MYSQLDAOFactory extends DAOfactory {
 			c.prepareStatement(Cliente).execute();
 			c.commit();
 
-			c.prepareCall(Factura).execute();
+			c.prepareStatement(Factura).execute();
 			c.commit();
 
-			c.prepareCall(Producto).execute();
+			c.prepareStatement(Producto).execute();
 			c.commit();
 
-			c.prepareCall(Producto_Factura).execute();
+			c.prepareStatement(Producto_Factura).execute();
 			c.commit();
 
-			c.prepareCall(FK_cliente_factura).execute();
+			c.prepareStatement(FK_cliente_factura).execute();
 			c.commit();
 
-			c.prepareCall(FK_Factura_Producto).execute();
+			c.prepareStatement(FK_Factura_Producto).execute();
 			c.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

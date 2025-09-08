@@ -1,4 +1,8 @@
+package org.main.service;
+
 import java.io.FileReader;
+
+
 import java.io.IOException;
 
 import org.apache.commons.csv.CSVFormat;
@@ -14,16 +18,16 @@ public class Servicio {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		DAOfactory mysqlDAO = DAOfactory.getDAOfactory(1);
+		DAOfactory mysqlDAO = DAOfactory.getDAOfactory(2);
 		//mysqlDAO.loadDB();
 		ClienteDAO         ClienteDAO   	  = mysqlDAO.getCLienteDAO();
 		ProductoDAO 	   ProductoDAO        = mysqlDAO.getProductoDAO();
 		FacturaDAO         FacturaDAO         = mysqlDAO.getFacturaDAO();
 		FacturaProductoDAO FacturaProductoDAO = mysqlDAO.getFacturaProductoDAO();
 		//System.out.println(ClienteDAO.getCliente(1));
-		//loadClients(ClienteDAO);
-		//loadProducts(ProductoDAO);
-		//loadFacturas(FacturaDAO);
+		/*loadClients(ClienteDAO);
+		loadProducts(ProductoDAO);
+		loadFacturas(FacturaDAO);*/
 		//loadFactura_Productos(FacturaProductoDAO);
 		/*System.out.println(ClienteDAO.getCliente(1));
 		System.out.println(ProductoDAO.getProducto(1));
@@ -32,9 +36,13 @@ public class Servicio {
 			System.out.println(s);
 		}*/
 		System.out.println(ProductoDAO.getProductoMasVendido());
-		for(String c : ClienteDAO.getClientesMasFacturados()) {
+		/*for(String c : ClienteDAO.getClientesMasFacturados()) {
 			System.out.println(c);
 		}
+		
+		for(String s : ClienteDAO.getClientes())
+			System.out.println(s);
+		*/
 	}
 	
 	public static void loadClients(ClienteDAO c) {
