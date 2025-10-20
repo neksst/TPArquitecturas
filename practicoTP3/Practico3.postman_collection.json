@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "10448f90-e04c-424c-8769-47cc63c0bf46",
+		"name": "Practico3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "altaEstudiante",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": {{DNI}},\r\n    \"nombre\": \"{{nombre}}\",\r\n    \"apellido\": \"{{apellido}}\",\r\n    \"edad\": {{edad}},\r\n    \"genero\": \"{{genero}}\" ,\r\n    \"ciudad\": \"{{ciudad}}\",\r\n    \"lu\": {{LU}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/estudiantes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "altaCarrera",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{id_carrera}},\r\n    \"nombreCarrera\": \"{{carrera}}\",\r\n    \"duracion\": {{duracion}}\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carreras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carreras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "matricularEstudiante",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{id}},\r\n  \"estudiante\": { \"dni\": {{id_estudiante}} },\r\n  \"carrera\": { \"id\": {{id_carrera}} },\r\n  \"inscripcion\": {{inscripcion}},\r\n  \"graduacion\": {{graduacion}},\r\n  \"antiguedad\": {{antiguedad}}\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/matriculas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"matriculas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerEstudiantesOrden",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/estudiantes?order=desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerEstudiantePorLU",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/estudiantes?lu=32410",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "lu",
+							"value": "32410"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerEstudiantesGenero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/estudiantes?gender=Femenino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "Femenino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerInscriptosPorCarrera",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/carreras/inscriptos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carreras",
+						"inscriptos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtnerEstudiantesPorCarreraYCiudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/estudiantes/filtro?carrera=tudai&ciudad=rauch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"filtro"
+					],
+					"query": [
+						{
+							"key": "carrera",
+							"value": "tudai"
+						},
+						{
+							"key": "ciudad",
+							"value": "rauch"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerReportePorCarrera",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/matriculas/report",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"matriculas",
+						"report"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
