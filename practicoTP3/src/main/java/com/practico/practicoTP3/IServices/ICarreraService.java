@@ -7,7 +7,7 @@ import com.practico.practicoTP3.dto.CarreraDTO;
 
 public interface ICarreraService {
 
-	void addCarrera(Carrera c);
+	Carrera addCarrera(Carrera c);
 	List<CarreraDTO> getCarrerasInscriptos();
 	
 }

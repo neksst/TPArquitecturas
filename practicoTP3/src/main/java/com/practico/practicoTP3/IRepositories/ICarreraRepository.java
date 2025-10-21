@@ -1,11 +1,9 @@
 package com.practico.practicoTP3.IRepositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import com.practico.practicoTP3.Entities.Carrera;
 import com.practico.practicoTP3.dto.CarreraDTO;

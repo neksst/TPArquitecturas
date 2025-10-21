@@ -17,17 +17,12 @@ public class CarreraService implements ICarreraService {
 	private ICarreraRepository CarreraRepository;
 	
 	@Override
-	public void addCarrera(Carrera c) {
-		this.CarreraRepository.save(c);
+	public Carrera addCarrera(Carrera c) {
+		return this.CarreraRepository.save(c);
 		
 	}
 
-	/*@Override
-	public List<CarreraDTO> getCarrerasInscriptos() {
-		// TODO Auto-generated method stub
-		return this.CarreraRepository.getCarrerasInscriptos();
-	}
-	*/
+	
 
 	@Override
 	public List<CarreraDTO> getCarrerasInscriptos() {

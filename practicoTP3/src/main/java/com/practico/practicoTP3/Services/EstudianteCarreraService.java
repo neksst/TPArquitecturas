@@ -18,8 +18,8 @@ public class EstudianteCarreraService implements IEstudianteCarreraService{
 	private IEstudianteCarreraRepository EstdianteCarreraRepository;
 
 	@Override
-	public void matricularEstudiante(EstudianteCarrera e) {
-		this.EstdianteCarreraRepository.save(e);
+	public EstudianteCarrera matricularEstudiante(EstudianteCarrera e) {
+		return this.EstdianteCarreraRepository.save(e);
 		
 	}
 
