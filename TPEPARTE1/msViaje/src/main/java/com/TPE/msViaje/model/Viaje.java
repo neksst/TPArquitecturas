@@ -17,7 +17,7 @@ import java.util.List;
 public class Viaje {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int idViaje;
+    private Long idViaje;
 
     private Long monopatinId;
     private LocalDateTime fechaInicio;

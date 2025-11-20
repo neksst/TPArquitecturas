@@ -58,7 +58,6 @@ public class ParadaController {
             return ResponseEntity.noContent().build();
         }
 
-        //paradaExistente.setDireccion(parada.getDireccion());
         paradaExistente.setNombre(parada.getNombre());
         paradaExistente.setLatitud(parada.getLatitud());
         paradaExistente.setLongitud(parada.getLongitud());

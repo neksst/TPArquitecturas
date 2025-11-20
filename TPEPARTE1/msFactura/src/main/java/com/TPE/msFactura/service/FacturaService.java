@@ -1,5 +1,7 @@
 package com.TPE.msFactura.service;
 
+import com.TPE.msFactura.client.UsuarioClient;
+import com.TPE.msFactura.dto.UsuarioDTO;
 import com.TPE.msFactura.model.Factura;
 import com.TPE.msFactura.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ public class FacturaService implements IFacturaService{
     @Autowired
     private FacturaRepository facturaRepository;
 
+    @Autowired
+    private UsuarioClient usuarioClient;
+
     @Transactional
     public List<Factura> findAll() {
         return facturaRepository.findAll();
@@ -24,7 +29,14 @@ public class FacturaService implements IFacturaService{
     }
 
     @Transactional
+    //verificar q el usuario existe haceindo un clientFeing
     public Factura create(Factura factura) {
+        UsuarioDTO user = usuarioClient.getUsuarioById(factura.getUsuarioId());
+
+        if(user == null){
+            return null;
+        }
+
         return facturaRepository.save(factura);
     }
 

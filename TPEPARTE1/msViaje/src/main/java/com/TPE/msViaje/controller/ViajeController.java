@@ -1,6 +1,7 @@
 package com.TPE.msViaje.controller;
 
 
+import com.TPE.msViaje.dto.MonopatinViajesDTO;
 import com.TPE.msViaje.dto.ReporteKilometrosDTO;
 import com.TPE.msViaje.model.Pausa;
 import com.TPE.msViaje.model.Viaje;
@@ -41,7 +42,7 @@ public class ViajeController {
 
     @PostMapping
     public ResponseEntity<Viaje> createViaje(@RequestBody Viaje viaje){
-        Viaje viajeCreated = viajeService.save(viaje);
+        Viaje viajeCreated = viajeService.create(viaje);
         if(viajeCreated == null){
             return ResponseEntity.noContent().build();
         }
@@ -67,7 +68,7 @@ public class ViajeController {
         viajeExistente.setEnCurso(viaje.isEnCurso());
         viajeExistente.setKilometrosRecorridos(viaje.getKilometrosRecorridos());
 
-        Viaje viajeUpdated = viajeService.save(viajeExistente);
+        Viaje viajeUpdated = viajeService.create(viajeExistente);
         return ResponseEntity.ok(viajeUpdated);
     }
 
@@ -99,7 +100,7 @@ public class ViajeController {
 
         pausa.setViaje(viajeExistente);  // Asociar la pausa al viaje existente
         viajeExistente.getPausas().add(pausa);
-        viajeService.save(viajeExistente);  // Guardar el viaje actualizado con la nueva pausa
+        viajeService.create(viajeExistente);  // Guardar el viaje actualizado con la nueva pausa
         return ResponseEntity.ok(viajeExistente);
     }
 
@@ -112,5 +113,11 @@ public class ViajeController {
         return ResponseEntity.ok(reporte);
     }
 
-    
+    @GetMapping("/monopatines-con-mas-viajes")
+    List<MonopatinViajesDTO> obtenerMonopatinesConMasViajes(
+            @RequestParam("minViajes") int minViajes,
+            @RequestParam("anio") int anio){
+        return viajeService.obtenerMonopatinesConMasViajes(minViajes,anio);
+    };
+
 }

@@ -13,15 +13,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Pausa {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idPausa;
 
     private LocalDateTime inicio;
     private LocalDateTime fin;
     private double duracion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "viaje_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idViaje", nullable = false)
     private Viaje viaje;
 
 }

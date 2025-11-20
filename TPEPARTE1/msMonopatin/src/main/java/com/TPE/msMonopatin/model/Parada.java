@@ -1,5 +1,6 @@
 package com.TPE.msMonopatin.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Parada {
     private double longitud;
 
     @OneToMany(mappedBy = "parada")
+    @JsonIgnore
     private List<Monopatin> listMonopatines;
 
 }

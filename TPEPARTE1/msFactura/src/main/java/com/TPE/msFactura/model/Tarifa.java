@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tarifa {
+
     public enum TipoTarifa {
         BASE,
         EXTRA_PAUSA

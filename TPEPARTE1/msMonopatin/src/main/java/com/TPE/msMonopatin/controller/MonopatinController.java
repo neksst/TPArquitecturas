@@ -1,5 +1,6 @@
 package com.TPE.msMonopatin.controller;
 
+import com.TPE.msMonopatin.dto.MonopatinViajesDTO;
 import com.TPE.msMonopatin.model.Monopatin;
 import com.TPE.msMonopatin.service.IMonopatinService;
 import lombok.RequiredArgsConstructor;
@@ -76,10 +77,10 @@ public class MonopatinController {
     /********************************************************************/
 
 
-    @GetMapping("/viajes/{minViajes}/{anio}")
-    public ResponseEntity<List<Monopatin>> obtenerMonopatinesConMasViajes(
+    @GetMapping("/viajes")
+    public ResponseEntity<List<MonopatinViajesDTO>> obtenerMonopatinesConMasViajes(
             @RequestParam int minViajes, @RequestParam int anio) {
-        List<Monopatin> result = monopatinService.obtenerMonopatinesConMasViajes(minViajes, anio);
+        List<MonopatinViajesDTO> result = monopatinService.obtenerMonopatinesConMasViajes(minViajes, anio);
         return ResponseEntity.ok(result);
     }
 

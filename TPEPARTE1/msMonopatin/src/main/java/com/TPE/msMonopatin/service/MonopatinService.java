@@ -1,6 +1,7 @@
 package com.TPE.msMonopatin.service;
 
 import com.TPE.msMonopatin.client.ViajeClient;
+import com.TPE.msMonopatin.dto.MonopatinViajesDTO;
 import com.TPE.msMonopatin.model.Monopatin;
 import com.TPE.msMonopatin.repository.IMonopatinRepository;
 import jakarta.transaction.Transactional;
@@ -61,7 +62,7 @@ public class MonopatinService implements IMonopatinService {
         return monopatinRepository.findMonopatinesCercanos(latitud, longitud, radio);
     }
 
-    public List<Monopatin> obtenerMonopatinesConMasViajes(int minViajes, int anio) {
+    public List<MonopatinViajesDTO> obtenerMonopatinesConMasViajes(int minViajes, int anio) {
         return viajeClient.obtenerMonopatinesConMasViajes(minViajes, anio);
     }
 

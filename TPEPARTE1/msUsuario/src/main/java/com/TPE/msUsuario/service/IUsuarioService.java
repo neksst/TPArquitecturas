@@ -1,6 +1,7 @@
 package com.TPE.msUsuario.service;
 
 import com.TPE.msUsuario.dto.MonopatinDTO;
+import com.TPE.msUsuario.model.Cuenta;
 import com.TPE.msUsuario.model.Usuario;
 
 import java.util.List;
@@ -12,5 +13,6 @@ public interface IUsuarioService {
     Usuario update(Usuario usuario);
     void delete(Long id);
     List<MonopatinDTO> obtenerMonopatinesCercanos(double latitud, double longitud, double radio);
+    Usuario addCuenta(Long usuarioID, Long cuentaID);
 
 }

@@ -1,6 +1,7 @@
 package com.TPE.msUsuario.controller;
 
 import com.TPE.msUsuario.dto.MonopatinDTO;
+import com.TPE.msUsuario.model.Cuenta;
 import com.TPE.msUsuario.model.Usuario;
 import com.TPE.msUsuario.service.IUsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/usuario")
 public class UsuarioController {
 
+    @Autowired
     private IUsuarioService usuarioService;
 
     @GetMapping
@@ -80,5 +82,14 @@ public class UsuarioController {
     }
 
 
+
+    @PutMapping("/add/cuenta/{idUsuario}/{idCuenta}")
+    public ResponseEntity<Usuario> addCuenta(@PathVariable Long idUsuario, @PathVariable Long idCuenta) {
+        Usuario usuario = usuarioService.addCuenta(idUsuario, idCuenta);
+        if (usuario == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(usuario);
+    }
 
 }

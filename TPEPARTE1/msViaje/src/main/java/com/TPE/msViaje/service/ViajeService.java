@@ -1,5 +1,7 @@
 package com.TPE.msViaje.service;
 
+import com.TPE.msViaje.client.MonopatinClient;
+import com.TPE.msViaje.dto.MonopatinViajesDTO;
 import com.TPE.msViaje.dto.ReporteKilometrosDTO;
 import com.TPE.msViaje.model.Pausa;
 import com.TPE.msViaje.model.Viaje;
@@ -20,6 +22,9 @@ public class ViajeService  implements IViajeService {
     @Autowired
     private IViajeRepository viajeRepository;
 
+    @Autowired
+    private MonopatinClient monopatinClient;
+
     @Transactional
     public List<Viaje> findAll() {
         return viajeRepository.findAll();
@@ -31,8 +36,21 @@ public class ViajeService  implements IViajeService {
     }
 
     @Transactional
-    public Viaje save(Viaje viaje) {
+    public Viaje create(Viaje viaje) {
+
+        Long monopatinId = viaje.getMonopatinId();
+        if (monopatinId == null) {
+            throw new IllegalArgumentException("Debe indicar un ID de monopatín.");
+        }
+
+        try {
+            monopatinClient.getMonopatinById(monopatinId);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("El monopatín con ID " + monopatinId + " no existe.");
+        }
+
         return viajeRepository.save(viaje);
+
     }
 
     @Transactional
@@ -102,5 +120,10 @@ public class ViajeService  implements IViajeService {
         }
 
         return reportes;
+    }
+
+    @Override
+    public List<MonopatinViajesDTO> obtenerMonopatinesConMasViajes(int minViajes, int anio) {
+        return viajeRepository.obtenerMonopatinesConMasViajes(minViajes,anio);
     }
 }
