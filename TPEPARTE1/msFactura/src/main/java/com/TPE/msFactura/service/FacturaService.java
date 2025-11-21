@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -55,4 +57,9 @@ public class FacturaService implements IFacturaService{
     public double obtenerTotalFacturado(int anio, int mesInicio, int mesFin) {
         return facturaRepository.obtenerTotalFacturado(anio, mesInicio, mesFin);
     }
+
+    public List<Factura> findByFechaEmisionBetween(LocalDate fechaInicio,LocalDate fechaFin) {
+        return facturaRepository.findByFechaEmisionBetween(fechaInicio, fechaFin);
+    }
+
 }

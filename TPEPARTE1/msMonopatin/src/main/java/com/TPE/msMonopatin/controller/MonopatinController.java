@@ -103,5 +103,15 @@ public class MonopatinController {
         return ResponseEntity.ok(monopatines);
     }
 
+    @PutMapping("/{id}/disponibilidad")
+    void actualizarDisponibilidad(@PathVariable("id") Long id, @RequestParam("disponible") boolean disponible){
+        monopatinService.actualizarDisponibilidad(id, disponible);
+    }
+
+    @PutMapping("/{id}/mantenimiento")
+    void actualizarEnMantenimiento(@PathVariable("id") Long id, @RequestParam("enMantenimiento") boolean disponible){
+        monopatinService.actualizarEnMantenimiento(id, disponible);
+    }
+
 
 }

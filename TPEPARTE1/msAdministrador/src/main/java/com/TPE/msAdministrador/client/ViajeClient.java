@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @FeignClient(name = "microservicio-viaje", url = "http://localhost:9002")
-@RequestMapping("/api/viaje")
 public interface ViajeClient {
 
-    @GetMapping("")
+    @GetMapping("/api/viaje")
     List<ViajeDTO> getAllViajes();
 
 }

@@ -1,5 +1,6 @@
 package com.TPE.msFactura.controller;
 
+import com.TPE.msFactura.dto.UsoMonopatinUsuarioDTO;
 import com.TPE.msFactura.model.DetalleFactura;
 import com.TPE.msFactura.service.IDetalleFacturaService;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -68,5 +70,17 @@ public class DetalleFacturaController {
         DetalleFactura detalleFacturaUpdated = detalleFacturaService.update(detalleFacturaExistente);
 
         return ResponseEntity.ok(detalleFacturaUpdated);
+    }
+
+    @GetMapping("/obtenerUsuariosQueMasUsanMonopatines")
+    public ResponseEntity<List<UsoMonopatinUsuarioDTO>> obtenerUsuariosQueMasUsan(@RequestParam LocalDate fechaInicio,@RequestParam LocalDate fechaFin) {
+        List<UsoMonopatinUsuarioDTO> listUso = detalleFacturaService.obtenerUsuariosQueMasUsan(fechaInicio, fechaFin);
+
+        if (listUso == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(listUso);
+
     }
 }

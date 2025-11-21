@@ -55,7 +55,7 @@ public class MantenimientoService implements IMantenimientoService {
     @Transactional
     public Mantenimiento iniciarMantenimiento(Long monopatinId, String descripcion) {
         // Verificar si el monopatín ya está en mantenimiento
-        if (mantenimientoRepository.findByMonopatin(monopatinId)) {
+        if (mantenimientoRepository.existsByMonopatinId(monopatinId)) {
             throw new RuntimeException("El monopatín ya está en mantenimiento");
         }
 
@@ -76,7 +76,7 @@ public class MantenimientoService implements IMantenimientoService {
     @Transactional
     public Mantenimiento finalizarMantenimiento(Long monopatinId) {
 
-        Mantenimiento mantenimiento = mantenimientoRepository.findById(monopatinId).orElse(null);
+        Mantenimiento mantenimiento = mantenimientoRepository.findByMonopatinId(monopatinId);
 
         // Establecer la fecha de finalización
         mantenimiento.setFechaFin(LocalDateTime.now());
@@ -95,7 +95,7 @@ public class MantenimientoService implements IMantenimientoService {
                 .map(v -> {
                     double tiempoTotal = v.getTiempoUso();
 
-                    if (!incluirPausas && v.getPausas() != null) {
+                    if (incluirPausas && v.getPausas() != null) {
                         double tiempoPausas = v.getPausas().stream()
                                 .filter(p -> p.getFin() != null) // Ignora pausas en curso
                                 .mapToDouble(p -> Duration.between(p.getInicio(), p.getFin()).toMinutes())

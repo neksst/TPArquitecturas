@@ -92,4 +92,5 @@ public class MantenimientoController {
             @RequestParam boolean incluirPausas) {
         return ResponseEntity.ok(mantenimientoService.generarReporteUsoMonopatines(incluirPausas));
     }
+
 }

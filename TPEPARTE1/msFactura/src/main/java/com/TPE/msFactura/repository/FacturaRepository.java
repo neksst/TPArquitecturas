@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Repository
 public interface FacturaRepository extends JpaRepository<Factura, Long> {
 
@@ -14,4 +17,6 @@ public interface FacturaRepository extends JpaRepository<Factura, Long> {
     double obtenerTotalFacturado(@Param("anio") int anio,
                                  @Param("mesInicio") int mesInicio,
                                  @Param("mesFin") int mesFin);
+
+    List<Factura> findByFechaEmisionBetween(LocalDate fechaEmisionAfter, LocalDate fechaEmisionBefore);
 }

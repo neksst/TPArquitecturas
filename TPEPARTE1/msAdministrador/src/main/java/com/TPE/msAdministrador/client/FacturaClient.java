@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "microservicio-factura", url = "http://localhost:9004")
-@RequestMapping("/api/factura")
+@FeignClient(name = "microservicio-factura",contextId = "facturaClient", url = "http://localhost:9004")
 public interface FacturaClient {
 
-    @GetMapping("/total-facturado")
+    @GetMapping("/api/factura/total-facturado")
     Double obtenerTotalFacturado(
             @RequestParam int anio,
             @RequestParam int mesInicio,

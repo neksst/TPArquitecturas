@@ -1,10 +1,9 @@
 package com.TPE.msAdministrador.service;
 
 import com.TPE.msAdministrador.client.*;
-import com.TPE.msAdministrador.dto.MonopatinDTO;
-import com.TPE.msAdministrador.dto.ReporteKilometrosDTO;
-import com.TPE.msAdministrador.dto.ViajeDTO;
+import com.TPE.msAdministrador.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -24,9 +23,11 @@ public class AdminService implements IAdminService {
     @Autowired
     private TarifaClient tarifaClient;
     @Autowired
+    private DetalleFacturaClient detalleFacturaClient;
+    @Autowired
     private ViajeClient viajeClient;
 
-    public List<MonopatinDTO> obtenerMonopatinesConMasViajes(int minViajes, int anio) {
+    public List<MonopatinViajesDTO> obtenerMonopatinesConMasViajes(int minViajes, int anio) {
         return monopatinClient.obtenerMonopatinesConMasViajes(minViajes, anio);
     }
 
@@ -46,9 +47,12 @@ public class AdminService implements IAdminService {
         cuentaClient.anularCuenta(id);
     }
 
-    /*----------------------------------------------------------------------------------*/
+    @Override
+    public List<UsoMonopatinUsuarioDTO> obtenerUsuariosQueMasUsanMonopatin(LocalDate fechaInicio, LocalDate fechaFin) {
+        return detalleFacturaClient.obtenerUsuariosQueMasUsan(fechaInicio,fechaFin);
+    }
 
-    // anular cuenta de usuario
+    /*----------------------------------------------------------------------------------*/
 
 
     public List<ReporteKilometrosDTO> generarReporteUsoMonopatines(boolean incluirPausas) {

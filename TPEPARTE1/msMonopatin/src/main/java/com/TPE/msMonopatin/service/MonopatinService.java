@@ -69,4 +69,18 @@ public class MonopatinService implements IMonopatinService {
     public List<Monopatin> obtenerMonopatinesKilometros(Double km) {
         return monopatinRepository.findMonopatinesKilometros(km);
     }
+
+    @Override
+    public void actualizarDisponibilidad(Long id, boolean disponible) {
+        Monopatin monopatin =  monopatinRepository.findById(id).orElse(null);
+        monopatin.setDisponible(disponible);
+        monopatinRepository.save(monopatin);
+    }
+
+    @Override
+    public void actualizarEnMantenimiento(Long id, boolean disponible) {
+        Monopatin  monopatin =  monopatinRepository.findById(id).orElse(null);
+        monopatin.setEnMantenimiento(disponible);
+        monopatinRepository.save(monopatin);
+    }
 }

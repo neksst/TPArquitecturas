@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IMantenimientoRepository extends JpaRepository<Mantenimiento,Long> {
-    @Query("SELECT m FROM Mantenimiento m WHERE m.monopatinId = :monopatinId")
-    boolean findByMonopatin(Long monopatinId);
+
+    //@Query("SELECT m FROM Mantenimiento m WHERE m.monopatinId = :monopatinId")
+    //boolean findByMonopatin(Long monopatinId);
+
+    boolean existsByMonopatinId(Long monopatinId);
+
+    Mantenimiento findByMonopatinId(Long monopatinId);
 }

@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReporteKilometrosDTO {
+public class MonopatinViajesDTO {
     private Long monopatinId;
-    private double kilometrosRecorridos;
-    private double tiempoDeUso;
+    private Long cantidadViajes;
 }

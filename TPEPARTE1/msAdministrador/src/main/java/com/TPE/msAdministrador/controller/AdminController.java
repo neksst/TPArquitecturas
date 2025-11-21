@@ -1,7 +1,9 @@
 package com.TPE.msAdministrador.controller;
 
 import com.TPE.msAdministrador.dto.MonopatinDTO;
+import com.TPE.msAdministrador.dto.MonopatinViajesDTO;
 import com.TPE.msAdministrador.dto.ReporteKilometrosDTO;
+import com.TPE.msAdministrador.dto.UsoMonopatinUsuarioDTO;
 import com.TPE.msAdministrador.service.IAdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminController {
 
     @Autowired
@@ -26,10 +28,10 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/monopatinViajes/{minViajes}/{anio}")
-    public ResponseEntity<List<MonopatinDTO>> obtenerMonopatinesConMasViajes(
+    @GetMapping("/monopatinViajes")
+    public ResponseEntity<List<MonopatinViajesDTO>> obtenerMonopatinesConMasViajes(
             @RequestParam int minViajes, @RequestParam int anio) {
-        List<MonopatinDTO> result = adminService.obtenerMonopatinesConMasViajes(minViajes, anio);
+        List<MonopatinViajesDTO> result = adminService.obtenerMonopatinesConMasViajes(minViajes, anio);
         return ResponseEntity.ok(result);
     }
 
@@ -59,6 +61,18 @@ public class AdminController {
     public ResponseEntity<List<ReporteKilometrosDTO>> generarReporteUsoMonopatines(
             @RequestParam boolean incluirPausas) {
         return ResponseEntity.ok(adminService.generarReporteUsoMonopatines(incluirPausas));
+    }
+
+    @GetMapping("/obtenerUsuariosQueMasUsanMonopatines")
+    public ResponseEntity<List<UsoMonopatinUsuarioDTO>> obtenerUsuariosQueMasUsanMonopatin(@RequestParam LocalDate fechaInicio, @RequestParam LocalDate fechaFin) {
+        List<UsoMonopatinUsuarioDTO> listUso = adminService.obtenerUsuariosQueMasUsanMonopatin(fechaInicio, fechaFin);
+
+        if (listUso == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(listUso);
+
     }
 
 }

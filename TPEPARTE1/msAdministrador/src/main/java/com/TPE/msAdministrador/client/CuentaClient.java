@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @FeignClient(name = "microservicio-usuario", url = "http://localhost:9003")
-@RequestMapping("/api/cuenta")
 public interface CuentaClient {
 
-    @PutMapping("/anularCuenta/{id}")
+    @PutMapping("/api/cuenta/anular/{id}")
     void anularCuenta(@PathVariable("id") long id);
 
 }
