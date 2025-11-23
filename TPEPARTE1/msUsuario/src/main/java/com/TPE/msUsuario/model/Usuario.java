@@ -21,6 +21,7 @@ public class Usuario {
     private String apellido;
     private String celular;
     private String email;
+    private String password;
 
     @ManyToMany
     @JoinTable(

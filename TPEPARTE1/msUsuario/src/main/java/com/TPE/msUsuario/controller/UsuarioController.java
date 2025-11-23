@@ -1,11 +1,15 @@
 package com.TPE.msUsuario.controller;
 
+import com.TPE.msUsuario.dto.LoginRequest;
 import com.TPE.msUsuario.dto.MonopatinDTO;
+import com.TPE.msUsuario.dto.TokenResponse;
 import com.TPE.msUsuario.model.Cuenta;
 import com.TPE.msUsuario.model.Usuario;
 import com.TPE.msUsuario.service.IUsuarioService;
+import com.TPE.msUsuario.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private JwtService jwtService;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getAllUsuarios() {
@@ -90,6 +97,27 @@ public class UsuarioController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(usuario);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+
+        List<Usuario> usuarios = usuarioService.findAll();
+
+        Usuario usuario = usuarios.stream()
+                .filter(u -> u.getEmail().equals(request.getEmail()) &&
+                        u.getPassword().equals(request.getPassword()))
+                .findFirst()
+                .orElse(null);
+
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Email o contraseña incorrectos");
+        }
+
+        String token = jwtService.generateToken(usuario.getEmail());
+
+        return ResponseEntity.ok(new TokenResponse(token));
     }
 
 }
