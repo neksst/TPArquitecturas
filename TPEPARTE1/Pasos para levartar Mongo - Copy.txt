@@ -1,0 +1,7 @@
+Levantar los contenedores: docker compose up -d
+
+Verificar que estén corriendo: docker ps
+
+Una ves levantado levantar los MicroServicios y realizar las pruebas necesarias. quedo todo funcionando hasta el momento .
+
+IMPLEMENTE Mongo para mis mantenimientos en msAdministrador 

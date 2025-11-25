@@ -58,7 +58,7 @@ public class MantenimientoController {
             @ApiResponse(responseCode = "400", description = "ID inválido o mantenimiento no encontrado")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Mantenimiento> getMantenimientoById(@PathVariable("id") Long id) {
+    public ResponseEntity<Mantenimiento> getMantenimientoById(@PathVariable("id") String id) {
         Mantenimiento mantenimiento = mantenimientoService.findById(id);
         if (mantenimiento == null) {
             return ResponseEntity.badRequest().build();
@@ -95,7 +95,7 @@ public class MantenimientoController {
     )
     @ApiResponse(responseCode = "204", description = "Mantenimiento eliminado correctamente")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMantenimiento(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteMantenimiento(@PathVariable("id") String id) {
         mantenimientoService.delete(id);
         return ResponseEntity.noContent().build();
     }
@@ -113,7 +113,7 @@ public class MantenimientoController {
     })
     @PutMapping("/{id}")
     public ResponseEntity<Mantenimiento> updatemantenimiento(
-            @PathVariable("id") Long id,
+            @PathVariable("id") String id,
             @RequestBody Mantenimiento mantenimiento) {
 
         Mantenimiento mantenimientoExistente = mantenimientoService.findById(id);

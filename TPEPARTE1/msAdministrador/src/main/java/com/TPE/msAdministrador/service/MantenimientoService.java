@@ -31,7 +31,7 @@ public class MantenimientoService implements IMantenimientoService {
     }
 
     @Transactional(readOnly = true)
-    public Mantenimiento findById(Long id) {
+    public Mantenimiento findById(String id) {
         return mantenimientoRepository.findById(id).orElse(null);
     }
 
@@ -41,7 +41,7 @@ public class MantenimientoService implements IMantenimientoService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(String id) {
         mantenimientoRepository.deleteById(id);
     }
 

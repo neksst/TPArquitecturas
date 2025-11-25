@@ -10,9 +10,9 @@ import java.util.List;
 public interface IMantenimientoService {
 
     List<Mantenimiento> findAll();
-    Mantenimiento findById(Long id);
+    Mantenimiento findById(String id);
     Mantenimiento create(Mantenimiento mantenimiento);
-    void delete(Long id);
+    void delete(String id);
     Mantenimiento update(Mantenimiento mantenimiento);
     Mantenimiento iniciarMantenimiento(Long monopatinId, String descripcion);
     Mantenimiento finalizarMantenimiento(Long monopatinId);
