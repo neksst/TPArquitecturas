@@ -1,0 +1,16 @@
+Rutas de documentacion de Swagguer
+
+MSAdministrador: http://localhost:9005/swagger-ui/index.html
+
+MSFactura: http://localhost:9004/swagger-ui/index.html
+
+MSUsuario: http://localhost:9003/swagger-ui/index.html
+
+MSViaje: http://localhost:9002/swagger-ui/index.html
+
+MSMonopatin: http://localhost:9001/swagger-ui/index.html
+
+Dejo hecho un backup de mi db q tenia en el docker según busque se pasa la db y no el docker en este caso.
+La db contiene los esquemas de cada microservicio , entiendo correctamente q si se cae la db se caen los 5 ms q se deberían tener en bases separadas pero tendría q levantar 5 docker y requiere mas tiempo.
+
+Dejo todo andando hasta el momento en mi pc cualquier duda de algo q no se entienda estoy al tanto un saludo.

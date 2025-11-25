@@ -23,11 +23,4 @@ public class JwtService {
                 .compact();
     }
 
-    public Claims validateToken(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(SECRET.getBytes()))
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
 }

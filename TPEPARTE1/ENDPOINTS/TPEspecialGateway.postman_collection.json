@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "cec46fbd-4fe5-46bd-985c-c8196ea7e136",
+		"name": "TPEspecialGateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30894789"
+	},
+	"item": [
+		{
+			"name": "LoguearUsuarioToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"kevin@test.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/usuario/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuario",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUsuariosToken",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzYzOTM4MDA0LCJleHAiOjE3NjQwMjQ0MDR9.Om8jWnp1UBTTo0zEKk0tlb9xILf_NGpnFs1Bqz6h4b4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"kevin@test.com\",\n    \"password\": \"1234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TotalFacturadoToken",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzYzOTM4MDA0LCJleHAiOjE3NjQwMjQ0MDR9.Om8jWnp1UBTTo0zEKk0tlb9xILf_NGpnFs1Bqz6h4b4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"kevin@test.com\",\n    \"password\": \"1234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/factura/total-facturado?anio=2025&mesInicio=01&mesFin=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"factura",
+						"total-facturado"
+					],
+					"query": [
+						{
+							"key": "anio",
+							"value": "2025"
+						},
+						{
+							"key": "mesInicio",
+							"value": "01"
+						},
+						{
+							"key": "mesFin",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReporteDeUsoMonopatinKM",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/admin/reporte-uso?incluirPausas=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"reporte-uso"
+					],
+					"query": [
+						{
+							"key": "incluirPausas",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AnularCuenta",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/admin/anularCuenta/52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"anularCuenta",
+						"52"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerMonopatinesConMasViajes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fechaAlta\": \"2025-11-20\",\r\n  \"saldo\": 1000.0,\r\n  \"activa\": true,\r\n  \"usuarios\": [\r\n        {\r\n        \"idUsuario\": 2\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/monopatinViajes?minViajes=1&anio=2026",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"monopatinViajes"
+					],
+					"query": [
+						{
+							"key": "minViajes",
+							"value": "1"
+						},
+						{
+							"key": "anio",
+							"value": "2026"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TotalFacturado",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/admin/factura/total-facturado?anio=2025&mesInicio=01&mesFin=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"factura",
+						"total-facturado"
+					],
+					"query": [
+						{
+							"key": "anio",
+							"value": "2025"
+						},
+						{
+							"key": "mesInicio",
+							"value": "01"
+						},
+						{
+							"key": "mesFin",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UsuariosQMasUsanMonopatines",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fechaAlta\": \"2025-11-20\",\r\n  \"saldo\": 1000.0,\r\n  \"activa\": true,\r\n  \"usuarios\": [\r\n        {\r\n        \"idUsuario\": 2\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/obtenerUsuariosQueMasUsanMonopatines?fechaInicio=2024-01-01&fechaFin=2025-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"obtenerUsuariosQueMasUsanMonopatines"
+					],
+					"query": [
+						{
+							"key": "fechaInicio",
+							"value": "2024-01-01"
+						},
+						{
+							"key": "fechaFin",
+							"value": "2025-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AjustarPrecios",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fechaAlta\": \"2025-11-20\",\r\n  \"saldo\": 1000.0,\r\n  \"activa\": true,\r\n  \"usuarios\": [\r\n        {\r\n        \"idUsuario\": 2\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/tarifa/ajustar-precios?nuevaTarifaBase=2310&nuevaTarifaExtra=1210&fechaInicio=2025-12-02",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"tarifa",
+						"ajustar-precios"
+					],
+					"query": [
+						{
+							"key": "nuevaTarifaBase",
+							"value": "2310"
+						},
+						{
+							"key": "nuevaTarifaExtra",
+							"value": "1210"
+						},
+						{
+							"key": "fechaInicio",
+							"value": "2025-12-02"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MonopatinesCercanosZona",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXZpbkB0ZXN0LmNvbSIsInJvbGUiOiJVU1VBUklPIiwiaWF0IjoxNzY0MDI0MzExLCJleHAiOjE3NjQxMTA3MTF9.osKiBeaK0ioMUkH3p8VTJA0U8y-j1sakUMBRLJU4w2s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fechaAlta\": \"2025-11-20\",\r\n  \"saldo\": 1000.0,\r\n  \"activa\": true,\r\n  \"usuarios\": [\r\n        {\r\n        \"idUsuario\": 2\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/usuario/monopatin/cercanos?latitud=-34.6037&longitud=-58.3816&radio=260",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuario",
+						"monopatin",
+						"cercanos"
+					],
+					"query": [
+						{
+							"key": "latitud",
+							"value": "-34.6037"
+						},
+						{
+							"key": "longitud",
+							"value": "-58.3816"
+						},
+						{
+							"key": "radio",
+							"value": "260"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

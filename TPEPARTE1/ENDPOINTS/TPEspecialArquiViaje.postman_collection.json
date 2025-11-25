@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "4ea10eee-59a2-4cfe-aeeb-b11a8e1902c1",
+		"name": "TPEspecialArquiViaje",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30894789"
+	},
+	"item": [
+		{
+			"name": "createViaje",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getViajes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getViajeID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateViaje",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idViaje\": 1,\r\n    \"monopatinId\": 8,\r\n    \"fechaInicio\": \"2025-11-19T10:10:00\",\r\n    \"fechaFin\": \"2025-11-19T11:10:00\",\r\n    \"kilometrosRecorridos\": 3.8,\r\n    \"enCurso\": false,\r\n    \"pausas\": [],\r\n    \"tiempoUso\": 40.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteViaje",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idViaje\": 1,\r\n    \"monopatinId\": 8,\r\n    \"fechaInicio\": \"2025-11-19T10:10:00\",\r\n    \"fechaFin\": \"2025-11-19T11:10:00\",\r\n    \"kilometrosRecorridos\": 3.8,\r\n    \"enCurso\": false,\r\n    \"pausas\": [],\r\n    \"tiempoUso\": 40.0\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViajeObtenerTiempoTotalConPausas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/2/tiempo-total-con-pausas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"2",
+						"tiempo-total-con-pausas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViajeReporteDeKilometros",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/reportes/kilometros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"reportes",
+						"kilometros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FinalizarViaje",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/3/finalizar?kilometrosRecorridos=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"3",
+						"finalizar"
+					],
+					"query": [
+						{
+							"key": "kilometrosRecorridos",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViajeAddPausa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"monopatinId\": 5,\r\n  \"fechaInicio\": \"2025-11-19T10:30:00\",\r\n  \"fechaFin\": \"2025-11-19T11:10:00\",\r\n  \"kilometrosRecorridos\": 3.8,\r\n  \"enCurso\": false,\r\n  \"pausas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/agregarPausa/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"agregarPausa",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPausa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"inicio\": \"2025-11-19T10:05:00\",\r\n  \"fin\": \"2025-11-19T10:50:00\",\r\n  \"duracion\": 45.0,\r\n  \"viaje\": {\r\n    \"idViaje\": 3\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/pausa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"pausa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPausas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"inicio\": \"2025-11-19T10:05:00\",\r\n  \"fin\": \"2025-11-19T10:50:00\",\r\n  \"duracion\": 45.0,\r\n  \"viaje\": {\r\n    \"idViaje\": 3\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/pausa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"pausa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPausaID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"inicio\": \"2025-11-19T10:05:00\",\r\n  \"fin\": \"2025-11-19T10:50:00\",\r\n  \"duracion\": 45.0,\r\n  \"viaje\": {\r\n    \"idViaje\": 3\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/pausa/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"pausa",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePausa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"idPausa\": 2,\r\n    \"inicio\": \"2025-11-19T10:00:00\",\r\n    \"fin\": \"2025-11-19T10:50:00\",\r\n    \"duracion\": 50.0,\r\n    \"viaje\": { \"idViaje\": 3 }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/pausa/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"pausa",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePausa",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"idPausa\": 2,\r\n    \"inicio\": \"2025-11-19T10:00:00\",\r\n    \"fin\": \"2025-11-19T10:50:00\",\r\n    \"duracion\": 50.0,\r\n    \"viaje\": { \"idViaje\": 3 }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/pausa/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"pausa",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MonopatinesConMasViajes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/viaje/monopatines-con-mas-viajes?minViajes=1&anio=2026",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"viaje",
+						"monopatines-con-mas-viajes"
+					],
+					"query": [
+						{
+							"key": "minViajes",
+							"value": "1"
+						},
+						{
+							"key": "anio",
+							"value": "2026"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
