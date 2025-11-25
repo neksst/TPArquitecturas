@@ -1,13 +1,14 @@
 package com.TPE.msUsuario.controller;
 
-import com.TPE.msUsuario.dto.LoginRequest;
-import com.TPE.msUsuario.dto.MonopatinDTO;
-import com.TPE.msUsuario.dto.TokenResponse;
+import com.TPE.msUsuario.dto.*;
 import com.TPE.msUsuario.model.Cuenta;
 import com.TPE.msUsuario.model.Usuario;
+import com.TPE.msUsuario.service.ChatService;
 import com.TPE.msUsuario.service.IUsuarioService;
 import com.TPE.msUsuario.service.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,6 +31,9 @@ public class UsuarioController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private ChatService chatService;
 
     // ============================
     // 1. Obtener todos los usuarios
@@ -205,4 +209,38 @@ public class UsuarioController {
         String token = jwtService.generateToken(usuario.getEmail());
         return ResponseEntity.ok(new TokenResponse(token));
     }
+
+    @Operation(
+            summary = "Realiza una consulta en lenguaje natural (Chat LLM) para usuarios premium",
+            description = "Este endpoint recibe una pregunta del usuario y la procesa utilizando un modelo LLM (Grok u otro). "
+                    + "Requiere enviar el ID del usuario y el prompt a consultar. "
+                    + "Devuelve una respuesta generada por IA junto con el estado de la operación."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Consulta procesada correctamente",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ChatResponse.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Error al procesar la consulta (usuario no encontrado, usuario no premium, etc.)",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ChatResponse.class)
+                    )
+            )
+    })
+    @PostMapping("/chatPregunta")
+    public ResponseEntity<ChatResponse> chat(@RequestBody ChatRequest request) {
+        ChatResponse resp = chatService.procesarPregunta(request.getPrompt(), request.getUserId());
+        if (!resp.isOk()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
+        }
+        return ResponseEntity.ok(resp);
+    }
+
 }

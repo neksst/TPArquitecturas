@@ -357,6 +357,36 @@
 			"response": []
 		},
 		{
+			"name": "PruebaDelChatIAPrueba2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 102,\r\n    \"prompt\": \"quiero anular la cuenta 102\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/usuario/chatPregunta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"usuario",
+						"chatPregunta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "MonopatinesCercanosZona",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -400,6 +430,36 @@
 							"key": "radio",
 							"value": "260"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PruebaChatIAPrueba1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 102,\r\n    \"prompt\": \"quiero saber los monopatines cercanos con una lat = -34.6037, lon = -58.3816 y un radio 260\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9003/api/usuario/chatPregunta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9003",
+					"path": [
+						"api",
+						"usuario",
+						"chatPregunta"
 					]
 				}
 			},

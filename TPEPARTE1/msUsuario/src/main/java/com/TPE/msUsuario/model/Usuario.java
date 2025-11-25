@@ -22,6 +22,7 @@ public class Usuario {
     private String celular;
     private String email;
     private String password;
+    private boolean esPremium; // <-- nuevo
 
     @ManyToMany
     @JoinTable(

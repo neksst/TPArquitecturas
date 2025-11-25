@@ -1,0 +1,8 @@
+Ya quedo listo el chat implementado funcionando con dos consulta q quedaron subidas a los endpoints de postman el usuario escribe en lenguaje natural los datos necesarios de formas comprensible para q funcione puse un ej donde estaba funcionando si no lo entiende no ejecuta nada solo devuelve q no entendio o no funciono.
+
+queda documentado
+
+Para resolverlo utilize de base lo de grok q dejaron subido al moodle mas le puse mi apiKey y luego con ayuda del chatgpt logre hacer el service etc.
+
+Pido disculpas por subirlo 1.30 tarde no llegue con el tiempo se me rompio el proyecto con mongo algunas veces y tarde mucho en solucionar esos problemas 
+
